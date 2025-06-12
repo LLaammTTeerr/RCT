@@ -1,0 +1,9 @@
+const int WINDOW_WIDTH = 1600;
+const int WINDOW_HEIGHT = 900;
+const std::string WINDOW_TITLE = "Roller Coaster Tycoon";
+const int FPS_LIMIT = 60;
+const int VERTICAL_SYNC = 1;
+const int MOUSE_CURSOR_VISIBLE = 1;
+const sf::Color BACKGROUND_COLOR = sf::Color::White;
+const std::string IMAGE_PATH = "resource/image/";
+const std::string FONT_PATH = "resource/font/";

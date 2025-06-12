@@ -1,50 +1,56 @@
 #include "GameEngine.h"
+#include "constants.h"
+#include "SceneManager.h"
 #include <mutex>
+#include "SFML/Graphics.hpp"
 
 GameEngine::GameEngine(void) {
-    window.create(sf::VideoMode({1400, 790}), "Roller Coaster Tycoon");
-    window.setFramerateLimit(60);
-    window.setVerticalSyncEnabled(true);
-    window.setKeyRepeatEnabled(false);
-    window.setMouseCursorVisible(true);
-    window.setPosition(sf::Vector2i(0, 0));
-    window.clear(sf::Color::Black);
-  }
+  window.create(sf::VideoMode({WINDOW_WIDTH, WINDOW_HEIGHT}), "Roller Coaster Tycoon", sf::Style::Titlebar | sf::Style::Close);
+  window.setFramerateLimit(60);
+  window.setVerticalSyncEnabled(true);
+  window.setKeyRepeatEnabled(false);
+  window.setMouseCursorVisible(true);
+  window.setPosition(sf::Vector2i(0, 0));
+  window.clear(sf::Color::White);
+  sceneManager.pushScene(new WelcomeScene());
+}
+
+void GameEngine::update(void) {
+
+}
   
-  void GameEngine::update(void) {
-  
-  }
-  
-  void GameEngine::render(void) {
-    sf::CircleShape circle(50); // Create circle outside the main loop
-    circle.setFillColor(sf::Color::Green);
-    circle.setPosition({375, 275});
-  
-    while (window.isOpen()) {
-      while (event = window.pollEvent()) {
-        if (event -> is<sf::Event::Closed>()) {
-          window.close();
-        }
+void GameEngine::render(void) {
+  while (window.isOpen()) {
+    while ((event = window.pollEvent())) {
+      if (event->is<sf::Event::Closed>()) {
+        window.close();
       }
-      
-      window.clear(sf::Color::Black);
-      window.draw(circle); // Draw before display()
-      window.display(); // Display after all drawing is done
+      if (!sceneManager.isEmpty()) {
+        sceneManager.currentScene()->handleEvents(window, event);
+      }
     }
-    window.close();
+    window.clear(sf::Color::White);
+
+    sceneManager.render(window);
+    if (!sceneManager.isEmpty()) {
+      sceneManager.currentScene()->update(0.0f);
+      sceneManager.currentScene()->handleInput();
+    }
+    
+    window.display();
   }
+  window.close();
+}
+
+GameEngine& GameEngine::getInstance(void) {
+  static GameEngine* instance = nullptr;
+  static std::mutex mutex;
   
-  
-  GameEngine& GameEngine::instance(void) {
-      static GameEngine* instance = nullptr;
-      static std::mutex mutex;
-      
-      // Use double-checked locking to ensure thread safety
-      if (instance == nullptr) {
-        std::lock_guard<std::mutex> lock(mutex);
-        if (instance == nullptr) {
-          instance = new GameEngine();
-        }
-      }
-      return *instance;
+  if (instance == nullptr) {
+    std::lock_guard<std::mutex> lock(mutex);
+    if (instance == nullptr) {
+      instance = new GameEngine();
+    }
   }
+  return *instance;
+}

@@ -1,14 +1,20 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <optional>
+#include <vector>
+#include "SceneManager.h"
+
 class GameEngine {
 private:
-    sf::RenderWindow window;
-    std::optional<sf::Event> event;
+  sf::RenderWindow window;
+  SceneManager sceneManager;
+  std::optional<sf::Event> event;
 public:
-    GameEngine(void);
-    ~GameEngine(void) = default;
+  GameEngine(void);
+  ~GameEngine(void) = default;
 
-    void update(void);
-    void render(void);
-    static GameEngine& instance(void);
+  void update(void);
+  void render(void);
+  static GameEngine& getInstance(void);
+  sf::RenderWindow& getWindow(void) { return window; }
 };

@@ -1,10 +1,6 @@
-#include <GameEngine.h>
-#include <SFML/Graphics.hpp>
+#include "GameEngine.h"
 
 int main(void) {
-  GameEngine& game = GameEngine::instance();
-  game.render();
-
- 
+  GameEngine::getInstance().render();
   return 0;
 }
