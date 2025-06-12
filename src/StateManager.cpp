@@ -1,5 +1,5 @@
 #include "StateManager.h"
-
+#include "GameEngine.h"
 StateManager::~StateManager() {
   clearStates();
 }
@@ -25,7 +25,7 @@ void StateManager::replaceState(GameState* state) {
 
 void StateManager::render(void) {
   if (!states.empty()) {
-    states.back()->render();
+    states.back()->render(GameEngine::instance().getWindow());
   }
 }
 

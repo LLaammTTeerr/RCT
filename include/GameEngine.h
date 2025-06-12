@@ -12,4 +12,3 @@ public:
     void render(void);
     static GameEngine& instance(void);
 };
-

@@ -2,15 +2,12 @@
 #include <mutex>
 
 GameEngine::GameEngine(void) {
-    window.create(sf::VideoMode({800, 600}), "Game Engine");
+    window.create(sf::VideoMode({1400, 790}), "Roller Coaster Tycoon");
     window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);
     window.setKeyRepeatEnabled(false);
     window.setMouseCursorVisible(true);
-    window.setActive(true);
-    window.setPosition(sf::Vector2i(100, 100));
-    window.setSize(sf::Vector2u(800, 600));
-    window.setTitle("Game Engine");
+    window.setPosition(sf::Vector2i(0, 0));
     window.clear(sf::Color::Black);
   }
   
