@@ -9,7 +9,7 @@ private:
 public:
   SceneManager() = default;
   ~SceneManager();
-
+  
   void pushScene(Scene* scene);
   void popScene(void);
   void replaceScene(Scene* scene);

@@ -6,8 +6,8 @@
 
 class GameEngine {
 private:
-  sf::RenderWindow window;
   SceneManager sceneManager;
+  sf::RenderWindow window;
   std::optional<sf::Event> event;
 public:
   GameEngine(void);

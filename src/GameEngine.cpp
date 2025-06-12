@@ -1,6 +1,5 @@
 #include "GameEngine.h"
 #include "constants.h"
-#include "SceneManager.h"
 #include <mutex>
 #include "SFML/Graphics.hpp"
 
@@ -12,7 +11,7 @@ GameEngine::GameEngine(void) {
   window.setMouseCursorVisible(true);
   window.setPosition(sf::Vector2i(0, 0));
   window.clear(sf::Color::White);
-  sceneManager.pushScene(new WelcomeScene());
+  sceneManager.pushScene(new GameScene());
 }
 
 void GameEngine::update(void) {

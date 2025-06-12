@@ -49,7 +49,6 @@ public:
       if (btn == sf::Mouse::Button::Left) {
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
         if (sprite.has_value() && sprite.value().getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
-          // do something
         }
       }
     }

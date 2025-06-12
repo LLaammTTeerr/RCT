@@ -1,4 +1,5 @@
 #include "SceneManager.h"
+#include <mutex>
 
 SceneManager::~SceneManager() {
   clearScenes();

@@ -1,5 +1,5 @@
-const int WINDOW_WIDTH = 1600;
-const int WINDOW_HEIGHT = 900;
+const int WINDOW_WIDTH = 2400;
+const int WINDOW_HEIGHT = 1350;
 const std::string WINDOW_TITLE = "Roller Coaster Tycoon";
 const int FPS_LIMIT = 60;
 const int VERTICAL_SYNC = 1;
